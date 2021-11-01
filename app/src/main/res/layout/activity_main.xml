@@ -11,7 +11,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="12dp"
+        android:padding="24dp"
         android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,59 +114,46 @@
 
             </com.hipradeep.oauthenticationexample.utils.SquareCardView>
         </LinearLayout>
-            <LinearLayout
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_firebase"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                android:onClick="open_firebase_activity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="150dp" >
 
-                <EditText
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="enter name"
-                    android:layout_margin="16dp"
-                    android:id="@+id/et1"/>
+                    android:layout_height="match_parent">
 
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="140dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/firebase_icon" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="enter mobile"
-                    android:layout_margin="16dp"
-                    android:id="@+id/et2"/>
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Firebase"
+                        android:textSize="32sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn"
-                    android:onClick="sendTextToFirebase"
-                    android:layout_margin="16dp"
-                    android:text="send to Firebase"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="select image"
-                    android:layout_margin="16dp"
-                    android:id="@+id/tv1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnSelectImage"
-                    android:onClick="selectFile"
-                    android:layout_margin="16dp"
-                    android:text="Select File"/>
-
- <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnUploadImage"
-                    android:onClick="sendDataToFirebase"
-                    android:layout_margin="16dp"
-                    android:text="Send file to Firebase"/>
-
-
-
-            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

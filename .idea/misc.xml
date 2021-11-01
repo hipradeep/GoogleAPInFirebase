@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/layout/activity_facebook_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/layout/activity_main.xml" value="0.13524590163934427" />
+        <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/layout/activity_firebase.xml" value="0.25" />
+        <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/duple/AndroidStudioProjects/OAuthenticationExample/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14375" />
       </map>
