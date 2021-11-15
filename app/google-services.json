@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1015347943277",
+    "project_id": "elite-striker-329717",
+    "storage_bucket": "elite-striker-329717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015347943277:android:ada0f9fd634b501a55ec64",
+        "android_client_info": {
+          "package_name": "com.hipradeep.oauthenticationexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015347943277-5vs28r31bt5dlocvharkqbeo87ss0rq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjXNs41vu-1PHVrAvVlchmWl8Fd2mhJtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015347943277-5vs28r31bt5dlocvharkqbeo87ss0rq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
