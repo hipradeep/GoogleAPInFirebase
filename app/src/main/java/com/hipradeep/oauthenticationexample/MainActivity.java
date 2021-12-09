@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hipradeep.oauthenticationexample.current_location.CurrentLocationActivity;
 import com.hipradeep.oauthenticationexample.firebase.FirebaseActivity;
 import com.hipradeep.oauthenticationexample.google_logins.GoogleLoginsActivity;
 
@@ -48,5 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void open_firebase_activity(View view) {
         startActivity(new Intent(this, FirebaseActivity.class));
+    }
+
+    public void open_current_location_activity(View view) {
+        startActivity(new Intent(this, CurrentLocationActivity.class));
     }
 }
