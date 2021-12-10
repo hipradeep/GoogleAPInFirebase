@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,8 @@ import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,15 +38,21 @@ public class CurrentLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "TAG";
     TextView tv_current_location;
-    Button btn_current_location;
+    Button btn_current_location, btn_goto_map;
     private static final int PERMISSION_REQUEST_CODE = 200;
     ResultReceiver resultReceiver;
+    double  currentLatitude=0.0, currentLongitude=0.0;
+    boolean isLocationCoordinatesfind=false;
+    boolean isNavigationChecked=false;
+    CheckBox cb_navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_location);
         tv_current_location=findViewById(R.id.tv_current_location);
         btn_current_location=findViewById(R.id.btn_current_location);
+        btn_goto_map=findViewById(R.id.btn_goto_map);
+        cb_navigation=findViewById(R.id.cb_navigation);
         resultReceiver = new LocationAddressResultReceiver(new Handler());
 
         btn_current_location.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +70,46 @@ public class CurrentLocationActivity extends AppCompatActivity {
                 }else {
                     requestLocationPermission();
                 }
+
+            }
+        });
+
+        cb_navigation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Log.e("TAG", "B");
+                    isNavigationChecked=true;
+                }else {
+                    Log.e("TAG", "A");
+                    isNavigationChecked=false;
+                }
+            }
+        });
+
+        btn_goto_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(isLocationCoordinatesfind){
+
+                    if(isNavigationChecked){
+                        Uri navigation = Uri.parse("google.navigation:q=" + currentLatitude + "," + currentLongitude + "");
+                        Intent navigationIntent = new Intent(Intent.ACTION_VIEW, navigation);
+                        navigationIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(navigationIntent);
+                    }else{
+                        String strUri = "http://maps.google.com/maps?q=loc:" + currentLatitude + "," + currentLongitude + " (" + "Your Current Location" + ")";
+                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+                        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                        startActivity(intent);
+                    }
+
+                }else{
+                    Toast.makeText(CurrentLocationActivity.this, "No Coordinates finds!", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -107,10 +156,10 @@ public class CurrentLocationActivity extends AppCompatActivity {
                             LocationServices.getFusedLocationProviderClient(CurrentLocationActivity.this)
                                     .removeLocationUpdates(this);
                             if (locationResult.getLocations().size() > 0) {
-
+                                isLocationCoordinatesfind=true;
                                 int latestLocationIndex = locationResult.getLocations().size() - 1;
-                              double  currentLatitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
-                              double  currentLongitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                                currentLatitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                                currentLongitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
                               //  Toast.makeText(CurrentLocationActivity.this, "Latitude - "+currentLatitude+" Longitude -" +currentLongitude, Toast.LENGTH_SHORT).show();
 
                                 tv_current_location.setText("Latitude - "+currentLatitude+"\nLongitude -" +currentLongitude);

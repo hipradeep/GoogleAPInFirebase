@@ -12,8 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
-        android:text="Button"
+        android:layout_marginBottom="24dp"
+        android:text="Get Location"
+        app:layout_constraintBottom_toTopOf="@+id/cb_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_goto_map"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Go To Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,10 +38,18 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Click on get location"
         app:layout_constraintBottom_toTopOf="@+id/btn_current_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/cb_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Navigation"
+        app:layout_constraintBottom_toTopOf="@+id/btn_goto_map"
+        app:layout_constraintStart_toStartOf="@+id/btn_goto_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>
