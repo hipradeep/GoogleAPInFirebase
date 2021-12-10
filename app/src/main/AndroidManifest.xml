@@ -35,6 +35,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <!--Service for getting current location-->
+        <service android:name=".current_location.CurrentLocation" />
     </application>
 
 </manifest>

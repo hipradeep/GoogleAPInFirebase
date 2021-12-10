@@ -16,7 +16,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.ResultReceiver;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,16 +33,18 @@ import com.hipradeep.oauthenticationexample.R;
 
 public class CurrentLocationActivity extends AppCompatActivity {
 
+    private static final String TAG = "TAG";
     TextView tv_current_location;
     Button btn_current_location;
     private static final int PERMISSION_REQUEST_CODE = 200;
+    ResultReceiver resultReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_location);
         tv_current_location=findViewById(R.id.tv_current_location);
         btn_current_location=findViewById(R.id.btn_current_location);
-
+        resultReceiver = new LocationAddressResultReceiver(new Handler());
 
         btn_current_location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,13 +111,13 @@ public class CurrentLocationActivity extends AppCompatActivity {
                                 int latestLocationIndex = locationResult.getLocations().size() - 1;
                               double  currentLatitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                               double  currentLongitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
-                                Toast.makeText(CurrentLocationActivity.this, "Latitude - "+currentLatitude+" Longitude -" +currentLongitude, Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(CurrentLocationActivity.this, "Latitude - "+currentLatitude+" Longitude -" +currentLongitude, Toast.LENGTH_SHORT).show();
 
                                 tv_current_location.setText("Latitude - "+currentLatitude+"\nLongitude -" +currentLongitude);
                                 Location location = new Location("providerNA");
-                               // location.setLatitude(currentLatitude);
-                               // location.setLongitude(currentLongitude);
-                               /// getAddress(location);
+                                location.setLatitude(currentLatitude);
+                                location.setLongitude(currentLongitude);
+                                getAddress(location);
 
                             }
                         }
@@ -150,6 +155,33 @@ public class CurrentLocationActivity extends AppCompatActivity {
         }else {
             Toast.makeText(CurrentLocationActivity.this, "Permission Not Granted", Toast.LENGTH_SHORT).show();
             //showSettingsDialog();
+        }
+    }
+    private void getAddress(Location location) {
+
+        Intent intent = new Intent(CurrentLocationActivity.this, CurrentLocation.class);
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+    }
+
+    class LocationAddressResultReceiver extends ResultReceiver {
+
+        LocationAddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            if (resultCode == Constants.SUCCESS_RESULT) {
+              String  currentLocation = resultData.getString(Constants.RESULT_DATA_KEY);
+              Log.e(TAG, currentLocation);
+              tv_current_location.append("\n"+currentLocation);
+             //   Toast.makeText(CurrentLocationActivity.this, currentLocation, Toast.LENGTH_SHORT).show();
+            } else if (resultCode == Constants.FAILURE_RESULT) {
+                Toast.makeText(CurrentLocationActivity.this, "Address not found, ", Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
 }
