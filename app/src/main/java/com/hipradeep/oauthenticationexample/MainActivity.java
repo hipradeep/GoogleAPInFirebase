@@ -55,3 +55,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, CurrentLocationActivity.class));
     }
 }
+
+//1 static map
+// google login
+// firebase add data in fire base, make a Recycler view, login system,
+// firebase otp login, email login
+// map modification, cursor
+// facebook login
+// github login,

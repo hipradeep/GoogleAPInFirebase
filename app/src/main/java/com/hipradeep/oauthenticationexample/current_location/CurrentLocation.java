@@ -72,7 +72,8 @@ public class CurrentLocation extends IntentService {
 
                 sendResultsToReceiver(Constants.SUCCESS_RESULT, TextUtils.join(Objects.requireNonNull(System.getProperty("line.separator")), addressFragments));
                 sendResultsToReceiver(Constants.POSTCODE_SUCCESS_RESULT, postCode);
-                sendResultsToReceiver(Constants.CITY_STATE_SUCCESS_RESULT, city+", "+state);
+                sendResultsToReceiver(Constants.STATE_SUCCESS_RESULT, state);
+                sendResultsToReceiver(Constants.CITY_SUCCESS_RESULT, city);
                 sendResultsToReceiver(Constants.ADDRESS_LINE_SUCCESS_RESULT, addressLine);
             }
         }
