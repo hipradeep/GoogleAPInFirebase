@@ -36,13 +36,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:text="Click on get location"
         app:layout_constraintBottom_toTopOf="@+id/btn_current_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_autocomplete_places_api"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
@@ -52,4 +53,20 @@
         android:text="Open Navigation"
         app:layout_constraintBottom_toTopOf="@+id/btn_goto_map"
         app:layout_constraintStart_toStartOf="@+id/btn_goto_map" />
+
+    <EditText
+        android:id="@+id/et_autocomplete_places_api"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Autocomplete Places API"
+        app:drawableEndCompat="@drawable/edit_location_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
