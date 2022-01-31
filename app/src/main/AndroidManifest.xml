@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hipradeep.oauthenticationexample">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OAuthenticationExample">
+        <activity
+            android:name=".google_assistant.GoogleAssistantActivity"
+            android:exported="false" />
         <activity
             android:name=".current_location.CurrentLocationActivity"
             android:exported="false" />
@@ -34,9 +39,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-
-        <!--Service for getting current location-->
+            android:exported="true" /> <!-- Service for getting current location -->
         <service android:name=".current_location.CurrentLocation" />
     </application>
 

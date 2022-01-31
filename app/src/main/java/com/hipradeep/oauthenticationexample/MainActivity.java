@@ -44,15 +44,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void facebookLogin(View view) {
 
-
     }
-
     public void open_firebase_activity(View view) {
         startActivity(new Intent(this, FirebaseActivity.class));
     }
 
     public void open_current_location_activity(View view) {
         startActivity(new Intent(this, CurrentLocationActivity.class));
+    }
+
+    public void open_google_assistant_activity(View view) {
+        startActivity(new Intent(this, GoogleLoginsActivity.class));
     }
 }
 
