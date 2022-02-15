@@ -50,7 +50,7 @@ public class CurrentLocation extends IntentService {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = null;
             try {
-                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 2);
             } catch (Exception ioException) {
                 Log.e("", "Error in getting address for the location");
             }
@@ -60,6 +60,28 @@ public class CurrentLocation extends IntentService {
                 sendResultsToReceiver(Constants.FAILURE_RESULT, msg);
             } else {
                 Address address = addresses.get(0);
+                Address address1 = addresses.get(1);
+         /*       Address[
+                        addressLines=[0:"D-74, Sector-A, Sector K, Aliganj, Lucknow, Uttar Pradesh 226024, India"],
+                        feature=D-74,
+                        admin=Uttar Pradesh,
+                        sub-admin=Lucknow,
+                        locality=Lucknow,
+                        thoroughfare=null,
+                        postalCode=226024,
+                        countryCode=IN,
+                        countryName=India,
+                        hasLatitude=true,
+                        latitude=26.9015778,
+                        hasLongitude=true,
+                        longitude=80.94542990000001,
+                        phone=null,
+                        url=null,
+                        extras=null
+                        ]*/
+
+                Log.e("TAG", "Address[0] : "+address.toString());
+                Log.e("TAG", "Address[1] : "+address1.toString());
                 ArrayList<String> addressFragments = new ArrayList<>();
                 for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
                     addressFragments.add(address.getAddressLine(i));
@@ -69,7 +91,10 @@ public class CurrentLocation extends IntentService {
                 String postCode =  address.getPostalCode() ;
                 String city = address.getLocality();  /////get city
                 String state = address.getAdminArea();  ///get state
-
+                Locale lo =  address.getLocale() ;
+                Log.e("TAG", "Local : "+lo.toString());
+                Log.e("TAG", "getPremises : "+ address.getPremises());
+                Log.e("TAG", "getSubAdminArea : "+ address.getSubAdminArea());
                 sendResultsToReceiver(Constants.SUCCESS_RESULT, TextUtils.join(Objects.requireNonNull(System.getProperty("line.separator")), addressFragments));
                 sendResultsToReceiver(Constants.POSTCODE_SUCCESS_RESULT, postCode);
                 sendResultsToReceiver(Constants.STATE_SUCCESS_RESULT, state);
